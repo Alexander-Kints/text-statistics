@@ -2,10 +2,10 @@ from django.db import models
 
 class TextFile(models.Model):
     file = models.FileField()
-    name = models.CharField(max_length=256)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return self.file.name
 
     class Meta:
         db_table = 'text_file'

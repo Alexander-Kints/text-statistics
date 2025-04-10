@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загрузка файла</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <div class="upload-container">
+        <div class="upload-header">
+            <h1>Загрузка файла</h1>
+        </div>
+
+        <form class="upload-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+                {{ form.file }}
+                <div class="file-hint">Только .txt файл</div>
+                {% if form.file.errors %}
+                    <div class="error-message">{{ form.file.errors.0 }}</div>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="submit-btn">Загрузить</button>
+
+            {% if success %}
+                <div class="success-message">
+                    Файл "{{ filename }}" успешно загружен!
+                </div>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
