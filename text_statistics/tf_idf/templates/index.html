@@ -29,9 +29,27 @@
             {% if success %}
                 <div class="success-message">
                     Файл "{{ filename }}" успешно загружен!
+                    <a href="{% url 'document-statistics' file_id=document.id %}" class="stats-link">
+                        Просмотреть статистику
+                    </a>
                 </div>
             {% endif %}
         </form>
+
+        {% if files %}
+        <div class="documents-list">
+            <h3>Ранее загруженные файлы:</h3>
+            <ul>
+                {% for file in files %}
+                <li>
+                    <a href="{% url 'statistics' file_id=file.id %}" class="document-link">
+                        {{ file.file.name }} ({{ file.created_at|date:"d.m.Y H:i" }})
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
     </div>
 </body>
 </html>

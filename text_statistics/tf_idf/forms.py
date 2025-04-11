@@ -1,5 +1,7 @@
 from django import forms
+
 from text_statistics.tf_idf.models import TextFile
+
 
 class UploadFileForm(forms.ModelForm):
     class Meta:

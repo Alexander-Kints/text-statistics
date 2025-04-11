@@ -1,5 +1,6 @@
-from sklearn.feature_extraction.text import TfidfVectorizer
 import codecs
+
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 def get_tf_idf(file_path):

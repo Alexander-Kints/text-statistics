@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статистика TF-IDF</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/statistics.css' %}">
+</head>
+<body>
+    <div class="upload-container">
+        <div class="upload-header">
+            <h1>Статистика TF-IDF</h1>
+        </div>
+
+        <div class="table-container">
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th>Слово</th>
+                        <th class="value-cell">TF</th>
+                        <th class="value-cell">IDF</th>
+                        <th class="value-cell">TF-IDF</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stat in stats %}
+                    <tr>
+                        <td>{{ stat.word }}</td>
+                        <td class="value-cell">{{ stat.tf|floatformat:4 }}</td>
+                        <td class="value-cell">{{ stat.idf|floatformat:4 }}</td>
+                        <td class="value-cell">{{ stat.tf_idf|floatformat:4 }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" style="text-align: center;">Нет данных для отображения</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {% if is_paginated %}
+            <div class="pagination">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1" class="page-link">Первая</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="page-link">←</a>
+                {% endif %}
+
+                <span class="page-link current-page">
+                    Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="page-link">→</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">Последняя</a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

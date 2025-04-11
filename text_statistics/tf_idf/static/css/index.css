@@ -123,3 +123,44 @@ body {
         margin: 1rem;
     }
 }
+
+.stats-link {
+    display: inline-block;
+    margin-left: 1rem;
+    padding: 0.3rem 0.6rem;
+    background-color: var(--primary-color);
+    color: #121212;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.document-link {
+    color: var(--primary-color);
+    transition: opacity 0.2s;
+}
+
+.document-link:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.documents-list {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.documents-list h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.documents-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.documents-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #333;
+}
